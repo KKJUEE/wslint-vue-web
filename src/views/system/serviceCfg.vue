@@ -1,5 +1,12 @@
 <template>
 	<section>
+		<!--<el-tabs v-model="activeName" @tab-click="handleClick">
+		    <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
+		    <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
+		    <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
+		    <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+		  </el-tabs>-->
+		
 		<!--工具条-->
 		<el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
 			<el-form :inline="true" :model="filters">
@@ -10,7 +17,7 @@
 					<el-button type="primary" v-on:click="getUsers">查询</el-button>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" >新增</el-button><!--@click="handleAdd"-->
+					<el-button type="primary" @click="handleAdd">新增</el-button><!--@click="handleAdd"-->
 				</el-form-item>
 			</el-form>
 		</el-col>
@@ -33,7 +40,7 @@
 			</el-table-column>
 			<el-table-column label="操作" width="150">
 				<template scope="scope">
-					<el-button size="small" >编辑</el-button><!--@click="handleEdit(scope.$index, scope.row)"-->
+					<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button><!---->
 					<el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
 				</template>
 			</el-table-column>
@@ -49,22 +56,18 @@
 		<!--编辑界面-->
 		<el-dialog title="编辑" v-model="editFormVisible" :close-on-click-modal="false">
 			<el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
-				<el-form-item label="姓名" prop="name">
+				<el-form-item label="参数描述" prop="name">
 					<el-input v-model="editForm.name" auto-complete="off"></el-input>
 				</el-form-item>
-				<el-form-item label="性别">
-					<el-radio-group v-model="editForm.sex">
-						<el-radio class="radio" :label="1">男</el-radio>
-						<el-radio class="radio" :label="0">女</el-radio>
-					</el-radio-group>
+				<el-form-item label="参数编码">
 				</el-form-item>
-				<el-form-item label="年龄">
+				<el-form-item label="参数值">
 					<el-input-number v-model="editForm.age" :min="0" :max="200"></el-input-number>
 				</el-form-item>
-				<el-form-item label="生日">
+				<el-form-item label="备注">
 					<el-date-picker type="date" placeholder="选择日期" v-model="editForm.birth"></el-date-picker>
 				</el-form-item>
-				<el-form-item label="地址">
+				<el-form-item label="详细信息">
 					<el-input type="textarea" v-model="editForm.addr"></el-input>
 				</el-form-item>
 			</el-form>
@@ -77,22 +80,19 @@
 		<!--新增界面-->
 		<el-dialog title="新增" v-model="addFormVisible" :close-on-click-modal="false">
 			<el-form :model="addForm" label-width="80px" :rules="addFormRules" ref="addForm">
-				<el-form-item label="姓名" prop="name">
+				<el-form-item label="参数描述" prop="name">
 					<el-input v-model="addForm.name" auto-complete="off"></el-input>
 				</el-form-item>
-				<el-form-item label="性别">
-					<el-radio-group v-model="addForm.sex">
-						<el-radio class="radio" :label="1">男</el-radio>
-						<el-radio class="radio" :label="0">女</el-radio>
+				<el-form-item label="参数编码">
 					</el-radio-group>
 				</el-form-item>
-				<el-form-item label="年龄">
+				<el-form-item label="参数值">
 					<el-input-number v-model="addForm.age" :min="0" :max="200"></el-input-number>
 				</el-form-item>
-				<el-form-item label="生日">
+				<el-form-item label="备注">
 					<el-date-picker type="date" placeholder="选择日期" v-model="addForm.birth"></el-date-picker>
 				</el-form-item>
-				<el-form-item label="地址">
+				<el-form-item label="详细信息">
 					<el-input type="textarea" v-model="addForm.addr"></el-input>
 				</el-form-item>
 			</el-form>
@@ -106,12 +106,14 @@
 
 <script>
 	import util from '../../common/js/util'
+//	import HelpDoc from '@/components/helpdoc.page'
 	//import NProgress from 'nprogress'
 	import { getUserListPage, removeUser, batchRemoveUser, editUser, addUser } from '../../api/api';
 
 	export default {
 		data() {
 			return {
+				activeName: 'second',
 				filters: {
 					name: ''
 				},
@@ -125,7 +127,7 @@
 				editLoading: false,
 				editFormRules: {
 					name: [
-						{ required: true, message: '请输入姓名', trigger: 'blur' }
+						{ required: true, message: '请输入参数值', trigger: 'blur' }
 					]
 				},
 				//编辑界面数据
@@ -142,7 +144,7 @@
 				addLoading: false,
 				addFormRules: {
 					name: [
-						{ required: true, message: '请输入姓名', trigger: 'blur' }
+						{ required: true, message: '请输入参数值', trigger: 'blur' }
 					]
 				},
 				//新增界面数据
@@ -157,9 +159,12 @@
 			}
 		},
 		methods: {
-			//性别显示转换
+			handleClick(tab, event) {
+		        console.log(tab, event);
+		      },
+			//名称显示转换
 			formatSex: function (row, column) {
-				return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知';
+				return row.sex == 1 ? '参数值' : row.sex == 0 ? '参数描述' : '未知';
 			},
 			handleCurrentChange(val) {
 				this.page = val;

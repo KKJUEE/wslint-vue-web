@@ -3,14 +3,16 @@ import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
 import Main from './views/Main.vue'
 import HomeLogo from './views/homeLogo.vue'
-import Table from './views/nav1/Table.vue'
-import Form from './views/nav1/Form.vue'
-import user from './views/nav1/user.vue'
+import ServiceCfg from './views/system/serviceCfg.vue'
+import SfsCfg from './views/system/sfsCfg.vue'
+import Form from './views/system/Form.vue'
+import user from './views/system/user.vue'
 import Page4 from './views/nav2/Page4.vue'
 import Page5 from './views/nav2/Page5.vue'
-import Page6 from './views/nav3/Page6.vue'
-import AddPage from './views/nav3/addPage.vue'
+import temConfig from './views/temConfig/temConfig.vue'
+import AddPage from './views/temConfig/addPage.vue'
 import echarts from './views/charts/echarts.vue'
+//import Upload from './views/nav2/upload.htm'
 
 let routes = [
     {
@@ -25,6 +27,12 @@ let routes = [
         name: '',
         hidden: true
     },
+//  {
+//      path: '/upload',
+//      component: Upload,
+//      name: '',
+//      hidden: true
+//  },
 //  {
 //  	path: '/',
 //      component: Home,
@@ -58,14 +66,18 @@ let routes = [
     {
         path: '/',
         component: Home,
-        name: '系统配置',
+        name: '',
         iconCls: 'fa fa-id-card-o',
+        leaf: true,//只有一个节点
         children: [
-            { path: '/table', component: Table, name: '系统服务配置' },
-            { path: '/page4', component: Page4, name: '文件管理配置' },
-            { path: '/page5', component: Page5, name: '文档引擎配置' },
-            { path: '/addPage', component: AddPage, name: '增加药品info' }
+            { path: '/sfsCfg', component: SfsCfg, name: '系统配置' }
         ]
+//      children: [
+//          { path: '/serviceCfg', component: ServiceCfg, name: '系统服务配置' },
+//          { path: '/page4', component: Page4, name: '文件管理配置' },
+//          { path: '/page5', component: Page5, name: '文档引擎配置' },
+//          { path: '/addPage', component: AddPage, name: '增加药品info' }
+//      ]
     },
     {
         path: '/',
@@ -74,7 +86,7 @@ let routes = [
         iconCls: 'fa fa-address-card',
         leaf: true,//只有一个节点
         children: [
-            { path: '/page6', component: Page6, name: '模板配置' }
+            { path: '/page6', component: temConfig, name: '模板配置' }
         ]
     },
 //  {

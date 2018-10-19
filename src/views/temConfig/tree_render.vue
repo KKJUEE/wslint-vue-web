@@ -19,7 +19,7 @@
 			<span>{{DATA.name}}</span>
 		</span>
 		<span class="tree-btn" >
-			<i class="el-icon-plus" @click.stop="nodeAdd(STORE,DATA,NODE)"></i>
+			<i class="el-icon-plus" v-if="NODE.level <= 2" @click.stop="nodeAdd(STORE,DATA,NODE)"></i>
 			<i class="el-icon-edit" @click.stop="nodeEdit(STORE,DATA,NODE)"></i>
 			<i class="el-icon-delete" @click.stop="nodeDel(STORE,DATA,NODE)"></i>
 		</span>
@@ -73,7 +73,7 @@
 	.tree-expand .tree-btn{
 		display:none;
 		float:right;
-		margin-right:20px;
+		margin-left:20px;
 	}
 	.tree-expand .tree-btn i{
 		color:#8492a6;

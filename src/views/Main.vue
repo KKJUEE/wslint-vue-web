@@ -11,5 +11,7 @@
 </script>
 
 <style scoped>
-
+	.el-menu {
+  	  background-color: #ecf5ff !important;
+  }
 </style>

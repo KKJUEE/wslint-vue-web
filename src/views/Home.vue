@@ -24,7 +24,7 @@
 			<aside :class="collapsed?'menu-collapsed':'menu-expanded'">
 				<!--导航菜单-->
 				<el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"
-					 unique-opened router v-show="!collapsed">
+					 unique-opened router v-show="!collapsed" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
 					<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
 						<el-submenu :index="index+''" v-if="!item.leaf">
 							<template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
@@ -53,12 +53,12 @@
 			<section class="content-container">
 				<div class="grid-content bg-purple-light">
 					<el-col :span="24" class="breadcrumb-container">
-						<strong class="title">{{$route.name}}</strong>
-						<el-breadcrumb separator="/" class="breadcrumb-inner">
+						<!--<strong class="title">{{$route.name}}</strong>-->
+						<!--<el-breadcrumb separator="" class="breadcrumb-inner">
 							<el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
 								{{ item.name }}
 							</el-breadcrumb-item>
-						</el-breadcrumb>
+						</el-breadcrumb>-->
 					</el-col>
 					<el-col :span="24" class="content-wrapper">
 						<transition name="fade" mode="out-in">
@@ -88,7 +88,8 @@
 					type: [],
 					resource: '',
 					desc: ''
-				}
+				},
+				isShowMenu: false
 			}
 		},
 		methods: {
@@ -131,6 +132,7 @@
 				user = JSON.parse(user);
 				this.sysUserName = user.name || '';
 				this.sysUserAvatar = user.avatar || '';
+//				isShowMenu = this.$route.name === "模板配置" ? true : false;
 			}
 
 		}
@@ -149,7 +151,8 @@
 		.header {
 			height: 60px;
 			line-height: 60px;
-			background: $color-primary;
+			background: rgb(84, 92, 100);
+		    border-bottom: 1px solid rgba(238, 241, 146, 0.3);
 			color:#fff;
 			.userinfo {
 				text-align: right;
@@ -174,8 +177,8 @@
 				padding-left:20px;
 				padding-right:20px;
 				border-color: rgba(238,241,146,0.3);
-				border-right-width: 1px;
-				border-right-style: solid;
+				border-width: 1px;
+				border-style: solid;
 				img {
 					width: 40px;
 					float: left;
@@ -231,6 +234,10 @@
 
 				}
 			}
+			.el-menu-vertical-demo {
+			    width: 230px;
+			    min-height: 400px;
+			  }
 			.menu-collapsed{
 				flex:0 0 60px;
 				width: 60px;
@@ -257,7 +264,7 @@
 						color: #475669;
 					}
 					.breadcrumb-inner {
-						float: right;
+						float: left;
 					}
 				}
 				.content-wrapper {
@@ -266,5 +273,10 @@
 				}
 			}
 		}
+	}
+	.el-menu--horizontal {
+	    background-color: rgb(84, 92, 100);
+	    border-bottom: 1px solid rgba(238, 241, 146, 0.3);
+	    border-left: 1px solid rgba(238, 241, 146, 0.3);
 	}
 </style>

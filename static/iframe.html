@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div>子页面</div>
+		
+    	<div id="container">
+    		<button onclick="aclick()">dasdasdas</button>
+    	</div>
+	</body>
+	<script>
+		window.addEventListener('message', function(event) {
+	        // 通过origin属性判断消息来源地址
+	       // if (event.origin == 'localhost') {
+	            console.log(event.data);
+	            //console.log(event.source);
+	        //}
+	    }, false);
+	//方法二
+	    // $(function(){
+	    //   setTimeout(function(){
+	    //     var a=window.location.search;
+	    //     a=a.split('id=')[1];
+	    //   var b=a.split("&access_tokin=");
+	    //   let aaa=b[0]
+	    //     b=b[0]+b[1];
+	    //     $('#container').html(b);
+	    //     if(aaa){
+	    //         !(function(){
+	    //             alert(aaa)
+	    //         })()
+	    //     }
+	    //   },1000)  
+	    // })
+	    function aclick(){
+		  let type="background";
+		  let targetOrigin="*";
+		  window.parent.postMessage(type,targetOrigin);      
+		}
+	</script>
+</html>
