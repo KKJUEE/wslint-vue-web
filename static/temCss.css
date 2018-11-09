@@ -1,0 +1,28 @@
+input.text-not-edit {
+	background-image: none;
+	background-color: white;
+}
+
+input.text-editing {
+	background-image: url('/static/poweroff-circle-fill-editing.svg');
+	background-size: 16px 100%;
+	background-position: center right;
+	background-repeat: no-repeat;
+	background-color: white;
+}
+
+input.text-related {
+	background-image: url('/static/trademark-circle-fill-relate.svg');
+	background-size: 16px 100%;
+	background-position: center right;
+	background-repeat: no-repeat;
+	background-color: white;
+}
+
+input.text-complete {
+	background-image: url('/static/check-circle-fill-edited.svg');
+	background-size: 16px 100%;
+	background-position: center right;
+	background-repeat: no-repeat;
+	background-color: white;
+}

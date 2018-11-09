@@ -11,11 +11,18 @@ import VueResource from 'vue-resource'
 //import NProgress from 'nprogress'
 //import 'nprogress/nprogress.css'
 import routes from './routes'
+import axios from 'axios' //引入axios 
 //import Mock from './mock'
 //Mock.bootstrap();
 import 'font-awesome/css/font-awesome.min.css'
 //导入全局组件
 import htmlpanel from './components/upload'
+import '../static/css/temCss.css' /*引入公共样式*/
+
+import { fetchGet, fetchPost, fetchDelete} from './api/axiosConfig'
+
+//引入axios
+require('./api/mock')
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)
@@ -24,7 +31,10 @@ Vue.use(Vuex)
 //调用的是htmlpanel里面的组件
 Vue.use(htmlpanel)
 
-//NProgress.configure({ showSpinner: false });
+Vue.prototype.$ajax=axios //修改Vue的原型属性
+Vue.prototype.$get = fetchGet
+Vue.prototype.$post = fetchPost
+Vue.prototype.$delete = fetchDelete
 
 const router = new VueRouter({
   routes
@@ -43,15 +53,12 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-//router.afterEach(transition => {
-//NProgress.done();
-//});
-
 new Vue({
   //el: '#app',
   //template: '<App/>',
   router,
 store,
+	axios,
   //components: { App }
   render: h => h(App)
 }).$mount('#app')

@@ -1335,6 +1335,31 @@ OL
 UL
 	{MARGIN-BOTTOM:0CM;}
 -->
+input.text{background-color:gray;
+
+opacity: 0.5;
+} 
+input.text-not-edit {
+	background-image:none;
+}
+input.text-editing {
+	background-image:url('./poweroff-circle-fill-editing.svg');
+    background-size: 10% 100%;
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+input.text-related{
+	background-image:url('./trademark-circle-fill-relate.svg');
+    background-size: 10% 100%;
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+input.text-complete {
+	background-image:url('./check-circle-fill-edited.svg');
+    background-size: 10% 100%;
+    background-position: center right;
+    background-repeat: no-repeat;
+}
 </STYLE>
 <!--[IF GTE MSO 10]>
 <STYLE>
@@ -1566,7 +1591,7 @@ lang=X-NONE style='font-size:10.5pt'><o:p><span style='text-decoration:none'>&nb
 LAYOUT-GRID-MODE:CHAR'><SPAN LANG=EN-US STYLE='MSO-BIDI-FONT-WEIGHT:BOLD'><SPAN
 STYLE='MSO-SPACERUN:YES'>   </SPAN></SPAN><SPAN STYLE='MSO-BIDI-FONT-SIZE:10.5PT;
 FONT-FAMILY:宋体;MSO-ASCII-FONT-FAMILY:"TIMES NEW ROMAN";MSO-HANSI-FONT-FAMILY:
-"TIMES NEW ROMAN";MSO-BIDI-LANGUAGE:EN-US;MSO-BIDI-FONT-WEIGHT:BOLD'>批号：</SPAN><input id="f001" type="text" onfocus="openFocus(this)"><SPAN
+"TIMES NEW ROMAN";MSO-BIDI-LANGUAGE:EN-US;MSO-BIDI-FONT-WEIGHT:BOLD'>批号：</SPAN><input id="f001" type="text" value="f001"  style="border:0px; border-bottom-width: 1px; border-bottom-color:black;border-bottom-style:inset;" readonly="readonly" onclick="conClick_f(this)" ondblclick="ondblclick_f(this)"><SPAN
 LANG=EN-US STYLE='MSO-BIDI-FONT-SIZE:10.5PT;MSO-BIDI-LANGUAGE:EN-US;MSO-BIDI-FONT-WEIGHT:
 BOLD'><SPAN STYLE='MSO-SPACERUN:YES'> </SPAN></SPAN></input><SPAN
 LANG=EN-US STYLE='MSO-BIDI-FONT-WEIGHT:BOLD'><O:P></O:P></SPAN></P>
@@ -1604,11 +1629,11 @@ STYLE='MSO-BIDI-FONT-SIZE:10.5PT;FONT-FAMILY:宋体;MSO-ASCII-FONT-FAMILY:"TIMES
 MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>电子天平</SPAN><SPAN LANG=EN-US
 STYLE='MSO-BIDI-FONT-SIZE:10.5PT'><SPAN STYLE='MSO-SPACERUN:YES'>       </SPAN></SPAN><SPAN
 STYLE='MSO-BIDI-FONT-SIZE:10.5PT;FONT-FAMILY:宋体;MSO-ASCII-FONT-FAMILY:"TIMES NEW ROMAN";
-MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>型号：</SPAN><input id="f002" type="text"><SPAN LANG=EN-US
+MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>型号：</SPAN><input id="f002" class="text-related" type="text" readonly="readonly" onclick="conClick_f(this)" ondblclick="ondblclick_f(this)"><SPAN LANG=EN-US
 STYLE='MSO-BIDI-FONT-SIZE:10.5PT'><SPAN
 STYLE='MSO-SPACERUN:YES'>     </SPAN></SPAN></INPUT><SPAN
 STYLE='MSO-BIDI-FONT-SIZE:10.5PT;FONT-FAMILY:宋体;MSO-ASCII-FONT-FAMILY:"TIMES NEW ROMAN";
-MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>编号：</SPAN><input id="f003" type="text"><SPAN LANG=EN-US
+MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>编号：</SPAN><input id="f003" class="text-editing" type="text" readonly="readonly" onclick="conClick_f(this)" ondblclick="ondblclick_f(this)"><SPAN LANG=EN-US
 STYLE='MSO-BIDI-FONT-SIZE:10.5PT'><SPAN
 STYLE='MSO-SPACERUN:YES'>      </SPAN><O:P></O:P></SPAN></input></P>
 
@@ -1617,18 +1642,18 @@ LINE-HEIGHT:21.0PT;MSO-LINE-HEIGHT-RULE:EXACTLY;LAYOUT-GRID-MODE:CHAR'><SPAN
 STYLE='MSO-BIDI-FONT-SIZE:10.5PT;FONT-FAMILY:宋体;MSO-ASCII-FONT-FAMILY:"TIMES NEW ROMAN";
 MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>高效液相色谱仪</SPAN><SPAN STYLE='MSO-BIDI-FONT-SIZE:
 10.5PT'> </SPAN><SPAN STYLE='MSO-BIDI-FONT-SIZE:10.5PT;FONT-FAMILY:宋体;
-MSO-ASCII-FONT-FAMILY:"TIMES NEW ROMAN";MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>型号：</SPAN><input id="f004" type="text"><SPAN
+MSO-ASCII-FONT-FAMILY:"TIMES NEW ROMAN";MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>型号：</SPAN><input id="f004" class="text-complete" type="text" readonly="readonly" onclick="conClick_f(this)" ondblclick="ondblclick_f(this)"><SPAN
 LANG=EN-US STYLE='MSO-BIDI-FONT-SIZE:10.5PT'><SPAN
 STYLE='MSO-SPACERUN:YES'>     </SPAN></SPAN></input><SPAN
 STYLE='MSO-BIDI-FONT-SIZE:10.5PT;FONT-FAMILY:宋体;MSO-ASCII-FONT-FAMILY:"TIMES NEW ROMAN";
-MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>编号：</SPAN><input type="text" id="f005"><SPAN LANG=EN-US
+MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>编号：</SPAN><input type="text" id="f005" class="text-not-edit" readonly="readonly" onclick="conClick_f(this)" ondblclick="ondblclick_f(this)"><SPAN LANG=EN-US
 STYLE='MSO-BIDI-FONT-SIZE:10.5PT'><SPAN
 STYLE='MSO-SPACERUN:YES'>      </SPAN><O:P></O:P></SPAN></input></P>
 
 <P CLASS=MSONORMAL STYLE='TEXT-INDENT:21.0PT;MSO-CHAR-INDENT-COUNT:2.0;
 LINE-HEIGHT:21.0PT;MSO-LINE-HEIGHT-RULE:EXACTLY;LAYOUT-GRID-MODE:CHAR'><SPAN
 STYLE='MSO-BIDI-FONT-SIZE:10.5PT;FONT-FAMILY:宋体;MSO-ASCII-FONT-FAMILY:"TIMES NEW ROMAN";
-MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>色谱柱：</SPAN><input type="text" id="f006"></input>（</SPAN><SPAN
+MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>色谱柱：</SPAN><input type="text" id="f006" readonly="readonly" onclick="conClick_f(this)" ondblclick="ondblclick_f(this)"></input>（</SPAN><SPAN
 LANG=EN-US STYLE='MSO-BIDI-FONT-SIZE:10.5PT'>AGILENT XDB-CN</SPAN><SPAN
 STYLE='MSO-BIDI-FONT-SIZE:10.5PT;FONT-FAMILY:宋体;MSO-ASCII-FONT-FAMILY:"TIMES NEW ROMAN";
 MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>，</SPAN><SPAN LANG=EN-US
@@ -1641,7 +1666,7 @@ STYLE='MSO-BIDI-FONT-SIZE:10.5PT'>5ΜM</SPAN><SPAN STYLE='MSO-BIDI-FONT-SIZE:
 10.5PT;FONT-FAMILY:宋体;MSO-ASCII-FONT-FAMILY:"TIMES NEW ROMAN";MSO-HANSI-FONT-FAMILY:
 "TIMES NEW ROMAN";MSO-BIDI-LANGUAGE:EN-US;MSO-BIDI-FONT-WEIGHT:BOLD'>）</SPAN><SPAN
 STYLE='MSO-BIDI-FONT-SIZE:10.5PT;FONT-FAMILY:宋体;MSO-ASCII-FONT-FAMILY:"TIMES NEW ROMAN";
-MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>编号：</SPAN><input type="text" id="f007"><SPAN LANG=EN-US
+MSO-HANSI-FONT-FAMILY:"TIMES NEW ROMAN"'>编号：</SPAN><input type="text" id="f007" readonly="readonly" onclick="conClick_f(this)" ondblclick="ondblclick_f(this)"><SPAN LANG=EN-US
 STYLE='MSO-BIDI-FONT-SIZE:10.5PT'><SPAN STYLE='MSO-SPACERUN:YES'>    </SPAN><SPAN
 STYLE='MSO-SPACERUN:YES'>  </SPAN><SPAN STYLE='MSO-SPACERUN:YES'>   </SPAN><O:P></O:P></SPAN></input></P>
 
@@ -2965,64 +2990,194 @@ LAYOUT-GRID-MODE:CHAR'><SPAN LANG=EN-US STYLE='MSO-BIDI-FONT-SIZE:10.5PT'></SPAN
 		selectId: '',
 		parentId: ''
 	};
+	//存放关联关系
+	var relateList = [];
+	//存放打开配置界面时，有关联的空格的样式
+	var beforeCfgRelate = [];
+	//设置定时器，检测是点击还是双击事件
+	var timer = null;
+	window.onload = function() {
+		//默认为全部未配置，首次加载时，已经配置的需要设置edited-class
+		var allInputs = document.getElementsByTagName('input');
+		for (var i in allInputs) {
+			allInputs[i].className="text-not-edit";
+		}
+		//codeing...
+		console.log("sda");
+	}
 	//接收parent的消息
 	window.onmessage = function(e) {
 		console.log(e.data);
+		//配置完成，取消input的disabled
+		var allInputs = document.getElementsByTagName('input');
+		if(e.data.status) {
+			//检测是否是有关联关系的空格(parent)，调用style更新func	
+			if(relateList && relateList.length) {
+				for(var i in relateList) {
+					if(relateList[i].input_id == e.data.id) {
+						updateAfter(beforeCfgRelate);
+					}
+				}
+			}
+			
+			for (var i in allInputs) {
+				if(allInputs[i].id === e.data.id) {
+					allInputs[i].className="text-complete";
+					allInputs[i].disabled = false;
+				} else {
+					allInputs[i].disabled = false;
+				}
+			} 
+		} else {	//取消配置，取消input的disabled
+			if(relateList && relateList.length) {
+				for(var i in relateList) {
+					if(relateList[i].input_id == e.data.id) {
+						updateAfter(beforeCfgRelate);
+					}
+				}
+			}
+			for (var i in allInputs) {
+				if(allInputs[i].id === e.data.id) {
+					allInputs[i].className="text-not-edit";
+					allInputs[i].disabled = false;
+				} else {
+					allInputs[i].disabled = false;
+				}
+			} 
+		}
 		if(e.data.isSelected && e.data.parentId) {
 			selectParams.parentId = e.data.parentId;
+			for (var i in allInputs) {
+				allInputs[i].disabled = false;
+			} 
 		} else {
 			selectParams.parentId = ''
 		}
+		//保存模板的空格关系，关联关系初始化
+		if(e.data.status && e.data.relate_list) { 	//点击保存时的处理，有参数时处理参数
+			relateList.push(e.data.relate_list);
+		} 
+		if(e.data.relate_list_all) {	//初级加载iframe时
+			relateList = e.data.relate_list_all;	//在iframe中存放已存在的关联关系
+		}
 	}
 	//input的点击事件
+	function conClick_f(obj){
+		//先检测是单击事件还是双击事件
+		clearTimeout(timer); 
+		//鼠标按下的次数（1表示单击，2表示双击，3表示三击）
+        if (event.detail == 2) {
+			return;
+		}
+        timer = setTimeout(function() { 
+			//屏蔽掉选择参数时的单击事件
+			if(selectParams.parentId !== '') {
+				return;
+			}
+			console.log('单击');
+			openFocus(obj);
+        }, 300); 
+	}
+	//双击事件选择参数
+	function ondblclick_f(obj) {
+		//判断是否是选择参数的双击事件
+		if (selectParams.parentId !== '') {
+			getInputId(obj);
+		}
+	}
+	//input的触发焦点事件
 	function openFocus(obj) {
+		var allInputs = document.getElementsByTagName('input');
+		//需要给父页面传递关联关系并且更新有关联的input样式
+		var relateObj = [];
+		for(var i in relateList) {
+			if(relateList[i].input_id == obj.id) {
+				relateObj = relateList[i].relate_input;
+			}
+		}
+		updateRStyle(relateObj);
+		
+		for (var i in allInputs) {
+			if(allInputs[i].id === obj.id) {
+				allInputs[i].className="text-editing";
+				allInputs[i].disabled = true;
+			} else {
+				allInputs[i].disabled = true;
+			}
+		}
 		
 		var input_obj = document.getElementById(obj.id);
-		console.log(this.event.srcElement.id);
 		var hasConfig = false;
 		
 		//发送之前判断是否是选择参数的功能
 		var input_params = {
 			id: obj.id,
 			status: hasConfig, //boolean
-			hasSelectParam: selectParams.parentId !== '' ? true : false
+			hasSelectParam: false	//不是传递参数
 		};
 		var targetOrigin="*";
 		//向父页面发送消息
 		window.parent.postMessage(input_params,targetOrigin); 
 		console.log(window.parent.document.URL)
 	}
+	//input参数选择功能，传递id给parent
+	function getInputId(obj) {
+		var input_obj = document.getElementById(obj.id);
+		input_obj.className = "text-related";
+		//发送之前判断是否是选择参数的功能
+		var input_params = {
+			id: obj.id,
+			hasSelectParam: true
+		};
+		var targetOrigin="*";
+		//向父页面发送消息
+		window.parent.postMessage(input_params,targetOrigin); 
+		//发送消息成功之后，清除选择参数的标识,并且input设置disabled为true
+		selectParams.parentId = '';
+		var allInputs = document.getElementsByTagName('input');
+		for(var i in allInputs) {
+			allInputs[i].disabled = true;
+		}
+	}
 	
-    function getAllValue(){
-        var allInputs = document.getElementsByTagName('input');
-        var documentData={};
-        var orginDataList=[];
-        var orginData;
-        for (var i=0;i<allInputs.length;i++) {
-            allInputs[i].id;
-            allInputs[i].value;
-
-            if(allInputs[i].id!=''&&allInputs[i].value!=''){
-
-                if(allInputs[i].type=='radio'&&allInputs[i].checked==false){
-                    continue;
-                }
-                orginData={};
-
-                var id=allInputs[i].id;
-                if(id.indexOf("0x")==-1){
-                    id="0x"+id;
-                }
-                var idLong=parseInt(id);
-                orginData["method"]=idLong;
-                orginData["value"]=allInputs[i].value;
-                orginDataList.push(orginData);
-            }
-        }
-        documentData["orginDataList"]=orginDataList;
-        var result=JSON.stringify(documentData).toString();
-        window.android.saveData(result);
-    }
+	//对有关联关系的input，更新样式
+	function updateRStyle(list) {
+		if(list && list.length !== 0) {
+			var obj = {};
+			var objList = [];
+			var allInputs = document.getElementsByTagName('input');
+			
+			for (var i in allInputs) {
+				for(var j in list) {
+					if(allInputs[i].id === list[j]) {
+						obj = {
+							beforeCfg_id: list[j],
+							className: allInputs[i].className
+						}
+						objList.push(obj);
+						//存放打开配置前的样式
+						
+						beforeCfgRelate = objList;
+						allInputs[i].className = "text-related";
+					}
+				}
+			}
+		}
+	}
+	//配置完成之后，需要将有关联关系的input的样式更改回来
+	function updateAfter(list) {
+		if(list && list.length !== 0) {
+			var allInputs = document.getElementsByTagName('input');
+			for (var i in allInputs) {
+				for(var j in list) {
+					if(allInputs[i].id === list[j].beforeCfg_id) {
+					//关闭配置，将R清除
+						allInputs[i].className = list[j].className;
+					}
+				}
+			}
+		}
+	}
 </script>
 
 </HTML>

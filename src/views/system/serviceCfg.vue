@@ -1,46 +1,96 @@
 <template>
 	<section>
-		<!--<el-tabs v-model="activeName" @tab-click="handleClick">
-		    <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
-		    <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
-		    <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
-		    <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
-		  </el-tabs>-->
 		
 		<!--工具条-->
 		<el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
 			<el-form :inline="true" :model="filters">
 				<el-form-item>
-					<el-input v-model="filters.name" placeholder="参数描述"></el-input>
+					<el-input v-model="filters.paramDes" placeholder="参数描述"></el-input>
 				</el-form-item>
 				<el-form-item>
 					<el-button type="primary" v-on:click="getUsers">查询</el-button>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" @click="handleAdd">新增</el-button><!--@click="handleAdd"-->
+					<el-button type="primary" v-on:click="handleAddFnc">新增</el-button><!--@click="handleAdd"-->
 				</el-form-item>
 			</el-form>
 		</el-col>
-
-		<!--列表-->
-		<el-table :data="users" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
-			<el-table-column type="selection" width="55">
-			</el-table-column>
-			<el-table-column type="index" width="60">
-			</el-table-column>
-			<el-table-column prop="name" label="参数描述" width="150" sortable>
-			</el-table-column>
-			<el-table-column prop="sex" label="参数编码" width="150" sortable><!--:formatter="formatSex"-->
-			</el-table-column>
-			<el-table-column prop="age" label="参数值" width="150" sortable>
-			</el-table-column>
-			<el-table-column prop="birth" label="备注" width="150" sortable>
-			</el-table-column>
-			<el-table-column prop="addr" label="详细信息" min-width="200" sortable>
-			</el-table-column>
-			<el-table-column label="操作" width="150">
+		<!--<template>
+		<el-table :data="tableData" border style="width: 100%" @cell-click="cellClick">
+			<el-table-column label="日期" width="180">
 				<template scope="scope">
-					<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button><!---->
+					<el-icon name="time"></el-icon>
+					<span style="margin-left: 10px">{{ scope.row.date }}</span>
+				</template>
+			</el-table-column>
+			<el-table-column label="姓名" width="180" >
+				<template scope="scope">
+					<el-input v-model="scope.row.name" v-if="scope.row.seen"
+					
+					@blur="loseFcous(scope.$index, scope.row)" > </el-input>
+					
+					<span style="margin-left: 10px" v-else>{{ scope.row.name }}</span>
+				</template>
+			</el-table-column>
+		
+		</el-table>
+		</template>-->
+		<!--<el-table-column prop="orderCount" label="排序序号">
+            <template slot-scope="{row,$index}">
+                <div  @click="{{chengenum($index)}}">
+                <el-input v-if="editable[$index]" v-model='grade'></el-input>
+                <span v-else>{{row.orderCount}}</span>
+                </div>
+            </template>
+        </el-table-column>-->
+		<!--列表-->
+		<!--<el-table :data="users" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;" @cell-dblclick="cellClick">
+			<el-table-column type="index" width="50px">
+			</el-table-column>
+			<el-table-column prop="paramDes" label="参数描述" width="150px" sortable>
+				<template scope="scope">
+					<el-input v-model="scope.row.paramDes" v-if="scope.row.seen"
+					
+					@blur="loseFcous(scope.$index, scope.row)" > </el-input>
+					
+					<span style="margin-left: 10px" v-else>{{ scope.row.paramDes }}</span>
+				</template>
+			</el-table-column>
+			<el-table-column prop="paramCode" label="参数编码" width="150px" sortable>
+			</el-table-column>
+			<el-table-column prop="value" label="参数值" width="150px" sortable>
+			</el-table-column>
+			<el-table-column prop="remark" label="备注" width="150px" sortable>
+			</el-table-column>
+			<el-table-column prop="details" label="详细信息" width="200px" sortable>
+			</el-table-column>
+			<el-table-column label="操作" min-width="20%">
+				<template scope="scope">
+					<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+					<el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
+				</template>
+			</el-table-column>
+		</el-table>-->
+		<!--
+        	作者：offline
+        	时间：2018-10-24
+        	描述：v-for的方法
+        -->
+        <el-table :data="users" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;" @cell-dblclick="cellClick">
+			<el-table-column type="index" width="50px">
+			</el-table-column>
+			<el-table-column v-for="{prop,label} in colConfigs" :key="prop" :prop="prop" :label="label" width="150px" sortable>
+				<!--<template scope="scope">
+					<el-input v-model="scope.row" v-if="scope.row.seen"
+					
+					@blur="loseFcous(scope.$index, scope.row)" > </el-input>
+					
+					<span style="margin-left: 10px" >{{ scope.row }}</span>
+				</template>-->
+			</el-table-column>
+			<el-table-column label="操作" min-width="20%">
+				<template scope="scope">
+					<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 					<el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
 				</template>
 			</el-table-column>
@@ -48,27 +98,28 @@
 
 		<!--工具条-->
 		<el-col :span="24" class="toolbar">
-			<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>
+<!--			<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>-->
 			<el-pagination layout="total, prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
 			</el-pagination>
 		</el-col>
 
 		<!--编辑界面-->
-		<el-dialog title="编辑" v-model="editFormVisible" :close-on-click-modal="false">
+		<el-dialog title="编辑" :visible.sync="editFormVisible" :close-on-click-modal="false">
 			<el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
-				<el-form-item label="参数描述" prop="name">
-					<el-input v-model="editForm.name" auto-complete="off"></el-input>
+				<el-form-item label="参数描述" prop="paramDes">
+					<el-input v-model="editForm.paramDes" auto-complete="off"></el-input>
 				</el-form-item>
 				<el-form-item label="参数编码">
+					<el-input v-model="editForm.paramCode" auto-complete="off"></el-input>
 				</el-form-item>
 				<el-form-item label="参数值">
-					<el-input-number v-model="editForm.age" :min="0" :max="200"></el-input-number>
+					<el-input-number v-model="editForm.value" :min="0" :max="200"></el-input-number>
 				</el-form-item>
 				<el-form-item label="备注">
-					<el-date-picker type="date" placeholder="选择日期" v-model="editForm.birth"></el-date-picker>
+					<el-date-picker type="date" placeholder="选择日期" v-model="editForm.remark"></el-date-picker>
 				</el-form-item>
 				<el-form-item label="详细信息">
-					<el-input type="textarea" v-model="editForm.addr"></el-input>
+					<el-input type="textarea" v-model="editForm.details"></el-input>
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
@@ -78,22 +129,22 @@
 		</el-dialog>
 
 		<!--新增界面-->
-		<el-dialog title="新增" v-model="addFormVisible" :close-on-click-modal="false">
+		<el-dialog title="新增" :visible.sync="addFormVisible":close-on-click-modal="false" >
 			<el-form :model="addForm" label-width="80px" :rules="addFormRules" ref="addForm">
-				<el-form-item label="参数描述" prop="name">
-					<el-input v-model="addForm.name" auto-complete="off"></el-input>
+				<el-form-item label="参数描述" prop="paramDes">
+					<el-input v-model="addForm.paramDes" auto-complete="off"></el-input>
 				</el-form-item>
 				<el-form-item label="参数编码">
-					</el-radio-group>
+					<el-input v-model="addForm.paramCode" auto-complete="off"></el-input>
 				</el-form-item>
 				<el-form-item label="参数值">
-					<el-input-number v-model="addForm.age" :min="0" :max="200"></el-input-number>
+					<el-input-number v-model="addForm.value" :min="0" :max="200"></el-input-number>
 				</el-form-item>
 				<el-form-item label="备注">
-					<el-date-picker type="date" placeholder="选择日期" v-model="addForm.birth"></el-date-picker>
+					<el-date-picker type="date" placeholder="选择日期" v-model="addForm.remark"></el-date-picker>
 				</el-form-item>
 				<el-form-item label="详细信息">
-					<el-input type="textarea" v-model="addForm.addr"></el-input>
+					<el-input type="textarea" v-model="addForm.details"></el-input>
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
@@ -112,10 +163,19 @@
 
 	export default {
 		data() {
+			this.colConfigs= [
+					{ prop: 'paramDes', label: '参数描述' },
+					{ prop: 'paramCode', label: '参数编码' },
+			        { prop: 'value', label: '参数值' },
+			        { prop: 'remark', label: '备注' },
+			        { prop: 'details', label: '详细信息' }
+		        ]
+
 			return {
+				
 				activeName: 'second',
 				filters: {
-					name: ''
+					paramDes: ''
 				},
 				users: [],
 				total: 0,
@@ -126,44 +186,57 @@
 				editFormVisible: false,//编辑界面是否显示
 				editLoading: false,
 				editFormRules: {
-					name: [
+					paramDes: [
 						{ required: true, message: '请输入参数值', trigger: 'blur' }
 					]
 				},
 				//编辑界面数据
 				editForm: {
 					id: 0,
-					name: '',
-					sex: -1,
-					age: 0,
-					birth: '',
-					addr: ''
+					paramDes: '',
+					paramCode: '',
+					value: -1,
+					remark: 0,
+					details: '',
+					seen: ''
 				},
 
 				addFormVisible: false,//新增界面是否显示
 				addLoading: false,
 				addFormRules: {
-					name: [
+					paramDes: [
 						{ required: true, message: '请输入参数值', trigger: 'blur' }
 					]
 				},
 				//新增界面数据
 				addForm: {
-					name: '',
-					sex: -1,
-					age: 0,
-					birth: '',
-					addr: ''
-				}
+					paramDes: '',
+					paramCode: '',
+					value: -1,
+					remark: 0,
+					details: ''
+				},
+				editable: []
 
 			}
 		},
 		methods: {
+			add(scope1){
+		      console.log(scope1)
+		    },
+    		loseFcous(index, row) {
+//			debugger
+				row.seen=false;
+			},
+			cellClick(row, column) {
+			//debugger
+				row.seen=true;
+			},
 			handleClick(tab, event) {
 		        console.log(tab, event);
 		      },
 			//名称显示转换
-			formatSex: function (row, column) {
+			formatSex(row, column) {
 				return row.sex == 1 ? '参数值' : row.sex == 0 ? '参数描述' : '未知';
 			},
 			handleCurrentChange(val) {
@@ -177,18 +250,24 @@
 					name: this.filters.name
 				};
 				let data = [{
-					addr: "app发布版本",
-					age: "1.0.0",
-					birth: "功能介绍",
+					details: "app发布版本",
+					value: "1.0.0",
+					remark: "功能介绍",
 					id: "B7c79698-a9b3-7dEb-035b-da4befF0c9C9",
-					name: "app版本",
-					sex: "app_version"
+					paramDes: "app版本",
+					paramCode: "app_version",
+					seen: false
 				}]
 				//模拟数据
 				let _this = this;
 				_this.listLoading = true;
 				_this.users = data;
 				_this.total = 85;
+				
+				let len = data.length;
+//              _this.editabl这个是控制显示隐藏的量
+                _this.editable = new Array(len);
+
 				
 				//作用域问题思考：setTimeout设置延时之后，再次加载listLoading为undefined，对this重新赋值
 				setTimeout(function(){
@@ -202,8 +281,9 @@
 //					//NProgress.done();
 //				});
 			},
+			
 			//删除
-			handleDel: function (index, row) {
+			handleDel(index, row) {
 				this.$confirm('确认删除该记录吗?', '提示', {
 					type: 'warning'
 				}).then(() => {
@@ -230,28 +310,33 @@
 				});
 			},
 			//显示编辑界面
-			handleEdit: function (index, row) {
+			handleEdit(index, row) {
 				this.editFormVisible = true;
 				this.editForm = Object.assign({}, row);
 			},
 			//显示新增界面
-			handleAdd: function () {
+			handleAddFnc() {
 				this.addFormVisible = true;
 				this.addForm = {
-					name: '',
-					sex: -1,
-					age: 0,
-					birth: '',
-					addr: ''
+					paramDes: '',
+					paramCode: '',
+					value: -1,
+					remark: 0,
+					details: ''
 				};
 			},
 			//编辑
-			editSubmit: function () {
-				this.$refs.editForm.validate((valid) => {
+			editSubmit() {
+				let _this = this;
+				_this.$refs.editForm.validate((valid) => {
 					if (valid) {
-						this.$confirm('确认提交吗？', '提示', {}).then(() => {
-							this.editLoading = true;
+						_this.$confirm('确认提交吗？', '提示', {}).then(() => {
+							_this.editLoading = true;
 							//NProgress.start();
+							setTimeout(function(){
+								_this.editLoading = false;
+								_this.editFormVisible = false;
+							},2000)
 							let para = Object.assign({}, this.editForm);
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 //							editUser(para).then((res) => {
@@ -270,13 +355,19 @@
 				});
 			},
 			//新增
-			addSubmit: function () {
-				this.$refs.addForm.validate((valid) => {
+			addSubmit() {
+				let _this = this;
+				_this.$refs.addForm.validate((valid) => {
 					if (valid) {
-						this.$confirm('确认提交吗？', '提示', {}).then(() => {
-							this.addLoading = true;
+						_this.$confirm('确认提交吗？', '提示', {}).then(() => {
+							_this.addLoading = true;
 							//NProgress.start();
-							let para = Object.assign({}, this.addForm);
+							//仅仅是模拟请求
+							setTimeout(function(){
+								_this.addLoading = false;
+								_this.addFormVisible = false;
+							},2000)
+							let para = Object.assign({}, _this.addForm);
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 //							addUser(para).then((res) => {
 //								this.addLoading = false;
@@ -293,7 +384,7 @@
 					}
 				});
 			},
-			selsChange: function (sels) {
+			selsChange(sels) {
 				this.sels = sels;
 			},
 			//批量删除

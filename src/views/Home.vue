@@ -53,12 +53,6 @@
 			<section class="content-container">
 				<div class="grid-content bg-purple-light">
 					<el-col :span="24" class="breadcrumb-container">
-						<!--<strong class="title">{{$route.name}}</strong>-->
-						<!--<el-breadcrumb separator="" class="breadcrumb-inner">
-							<el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
-								{{ item.name }}
-							</el-breadcrumb-item>
-						</el-breadcrumb>-->
 					</el-col>
 					<el-col :span="24" class="content-wrapper">
 						<transition name="fade" mode="out-in">
@@ -189,7 +183,7 @@
 				}
 			}
 			.logo-width{
-				width:230px;
+				width:150px;
 			}
 			.logo-collapse-width{
 				width:60px
@@ -210,8 +204,8 @@
 			bottom: 0px;
 			overflow: hidden;
 			aside {
-				flex:0 0 230px;
-				width: 230px;
+				flex:0 0 150px;
+				width: 150px;
 				// position: absolute;
 				// top: 0px;
 				// bottom: 0px;
@@ -235,7 +229,7 @@
 				}
 			}
 			.el-menu-vertical-demo {
-			    width: 230px;
+			    width: 150px;
 			    min-height: 400px;
 			  }
 			.menu-collapsed{
@@ -243,8 +237,8 @@
 				width: 60px;
 			}
 			.menu-expanded{
-				flex:0 0 230px;
-				width: 230px;
+				flex:0 0 150px;
+				width: 150px;
 			}
 			.content-container {
 				// background: #f1f2f7;

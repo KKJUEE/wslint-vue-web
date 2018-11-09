@@ -67,7 +67,7 @@
 			<div class="file-upload">
 				<span class="file-upload-span">选择模板</span>
 				<el-upload
-				  action="https://jsonplaceholder.typicode.com/posts/"
+				  action="https://localhost:8080"
 				  list-type="picture-card"
 				  :on-preview="handlePictureCardPreview"
 				  :on-remove="handleRemove">

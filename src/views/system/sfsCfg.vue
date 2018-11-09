@@ -7,21 +7,22 @@
 		    </el-tab-pane>
 		    <el-tab-pane label="系统启动配置" name="second">系统启动配置</el-tab-pane>
 		    <el-tab-pane label="药品配置" name="third">药品配置</el-tab-pane>
+		    <el-tab-pane label="方法库配置" name="four">方法库配置</el-tab-pane>
 		 </el-tabs>
 	</section>
 </template>
 
 <script>
 	import util from '../../common/js/util'
-	import ServiceCfg from './ServiceCfg'
+	import ServiceCfg from './serviceCfg'
 	//import NProgress from 'nprogress'
 	import { getUserListPage, removeUser, batchRemoveUser, editUser, addUser } from '../../api/api';
 
 	export default {
 		data() {
 			return {
-				activeName: 'second',
-				isShowService: false
+				activeName: 'first',
+				isShowService: true
 			}
 		},
 		methods: {
